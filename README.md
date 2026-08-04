@@ -1,11 +1,11 @@
 # PPAL — Post-Process AutoLuminous
 
-PPAL は、[MikuMikuDayo](https://github.com/pennennennennennenem/MikuMikuDayo) 用の AutoLuminous 互換ポストプロセスです。  
+PPAL は、[MikuMikuDayo](https://github.com/pennennennennennenem/MikuMikuDayo) 用の [AutoLuminous](https://www.nicovideo.jp/watch/sm16087751) ぽいポストプロセスです。  
 モデルの材質または追加 UV から発光色を抽出し、タイトブルーム、ワイドブルーム、星形グレアを元の画面へ加算合成します。
 
 ## ファイル
 
-- `PPAL_2.fxdayo` — AutoLuminous 互換ポストプロセス本体
+- `PPAL_2.fxdayo` — AutoLuminous ぽいポストプロセス本体
 - `PPAL_2.pmx` — エフェクトを操作するコントローラーモデル
 
 ## 導入方法
