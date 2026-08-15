@@ -3,7 +3,7 @@
 PPAL は、[MikuMikuDayo](https://github.com/pennennennennennenem/MikuMikuDayo) 向けの発光ポストプロセスです。
 モデルの材質または追加UVから発光色を抽出し、タイトブルーム、ワイドブルーム、星形グレアを元の画面へ加算合成します。
 
-本プロジェクトは [AutoLuminous](https://www.nicovideo.jp/watch/sm16087751) に着想を得た独立実装です。AutoLuminousの公式版・移植版ではありません。
+本プロジェクトは [AutoLuminous](https://www.nicovideo.jp/watch/sm16087751) ぽい動作をする独立実装です。AutoLuminousの公式版・移植版ではありません。
 
 ## ファイル
 
