@@ -71,10 +71,10 @@ using namespace YRZ;
 }
 [HLSL]
 
-// PPAL.fxdayo  —  Post-Process AutoLuminous
+// PPAL_2.fxdayo  —  Bloom/Glare Post-Process for MikuMikuDayo
 //
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// MikuMikuDayo 用 AutoLuminous 互換ポストプロセス
+// MikuMikuDayo 用の AutoLuminous 着想ポストプロセス
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //
 // 【パス構成 / テクスチャフロー】
@@ -85,33 +85,33 @@ using namespace YRZ;
 //   BloomBlurH_Wide  → [WideH RTV]    ワイド層水平ガウスぼかし (Emissive から)
 //   BloomBlurV_Wide  → [WideBloom]    ワイド層垂直ガウスぼかし
 //   Glare            → [GlareBuf]     星形グレア (TightBloom から)
-//   BloomComposite   → [RTOutput]     最終合成 (ScreenTexture + 3層加算)
+//   BloomComposite   → [RTOutput]     最終合成 (ScreenTexture + ブルーム/グレア)
 //
-// 【AutoLuminous 発光指定方式】
-//   方式A（材質指定）: スペキュラ色=黒(0,0,0)、shininess≥100
+// 【発光指定方式】
+//   方式A（材質指定）: スペキュラ色=黒(0,0,0)、shininess>100
 //   方式B（追加UV）:   追加UV1.xy≈(0.2,0.7) の頂点
 //
-// 【PPAL.pmx コントローラパラメータ】
+// 【PPAL_2.pmx コントローラパラメータ】
 //   off モーフ: 0=全開、1=消灯
 //   発光強度      : 0=標準×1, -1=消灯, +1=×2
 //   ぼかし幅低減  : 0=最大, 1=最小 ※増加不可
 //   光芒数        : 光芒方向数 0〜9（1方向につき正逆2本）
 //   元画面輝度    : 0=変化なし, -100=完全黒, +100=×2
-//   AL-Z発光強度  : AL-Z規格 -100〜500
+//   AL-Z発光強度  : AL-Z形式 -100〜500
 //   光芒角度      : 基準角度からの回転量（度）
 //   光芒長さ      : -100=長さ0, 0=標準, +100=2倍
 //   点滅周期      : 秒。正=滑らかな波、負=矩形波、0=点滅停止
 
-// Radeon向け: bindlessテクスチャ添え字は NonUniformResourceIndex で囲う
+// Radeon環境でのリソース参照を考慮し、bindlessテクスチャ添え字は NonUniformResourceIndex で囲う
 #define NURI NonUniformResourceIndex
 
 // 【ユーザー変更不可】controllers の item 名と PPAL_2.pmx のモーフ名は必ず一致させる。
 // コントローラ変数 C_off / C_Si / C_Tr / C_X / C_Y / C_Z / C_Rx / C_Ry / C_Rz は
 // フレームワークが controllers 定義から自動宣言するため手動宣言不要。
-// 【Codex用覚書】パス名・RTV名もフレームワークとの接続名なので、外観調整目的では変更しない。
+// パス名・RTV名はフレームワークとの接続名なので、外観調整目的では変更しない。
 
 // ============================================================
-// AutoLuminous 互換パラメータ
+// PPAL パラメータ
 // ============================================================
 // 【ユーザー変更可】以下の定数は標準状態の見た目を調整する値。
 // モーフの動作範囲を変えたい場合は、各パス内の計算式も併せて確認する。
@@ -312,7 +312,7 @@ float4 PS(VSO vso) : SV_TARGET
 		float cycle = frac(Time / abs(blinkPeriod));
 		if (blinkPeriod > 0.0)
 		{
-			// Why not 0〜1: AutoLuminous互換のため、完全消灯しない0.2〜1.0の滑らかな波にする。
+			// Why not 0〜1: 発光の視認性を保つため、完全消灯しない0.2〜1.0の滑らかな波にする。
 			blinkFactor = 0.6 + 0.4 * cos(2.0 * PI * cycle);
 		}
 		else

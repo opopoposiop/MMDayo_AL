@@ -1,0 +1,6 @@
+# PMX controller files are binary assets.
+*.pmx binary
+
+# Treat FXDAYO sources as HLSL-like text in GitHub and local tooling.
+*.fxdayo text
+*.fxdayo linguist-language=HLSL

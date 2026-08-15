@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Editor and temporary files
+*.bak
+*.tmp
+*.swp
+
+# MikuMikuDayo local/runtime artifacts
+shadercache/
+*.dayo
