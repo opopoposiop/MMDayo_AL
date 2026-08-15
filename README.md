@@ -138,6 +138,6 @@ PPAL は次の順に画面を処理します。
 ## 謝辞
 
 - [MikuMikuDayo](https://github.com/pennennennennennenem/MikuMikuDayo)：YRZFXポストプロセスの実行環境および仕様を利用しています。
-- [AutoLuminous](https://www.nicovideo.jp/watch/sm16087751)：そぼろ氏のエフェクトに着想を得ています。
+- [AutoLuminous](https://www.nicovideo.jp/watch/sm16087751)：そぼろ氏のMMD必須エフェクトです。
 
 MikuMikuDayo本体およびAutoLuminous本体は本リポジトリに同梱していません。
