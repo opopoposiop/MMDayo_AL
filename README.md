@@ -9,7 +9,7 @@ PPAL は、[MikuMikuDayo](https://github.com/pennennennennennenem/MikuMikuDayo) 
 
 - `PPAL_2.fxdayo` — 発光抽出、ブルーム、グレア、合成を行うポストプロセス本体
 - `PPAL_2.pmx` — エフェクトを操作するコントローラーモデル
-- `update/` — 旧版 `PPAL.pmx` / `PPAL.fxdayo`
+- `archive/` — 旧版 `PPAL.pmx` / `PPAL.fxdayo`
 
 ## 動作要件
 
